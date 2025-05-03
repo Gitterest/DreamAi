@@ -1,0 +1,7 @@
+fastapi
+uvicorn
+openai 
+transformers 
+torch 
+stable-baselines3 
+numpy
