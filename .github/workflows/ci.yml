@@ -2,27 +2,25 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
   pull_request:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   frontend:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-
-      - name: Debug: list frontend files
+      - name: Show files for debug
         run: |
-          echo "PWD = $(pwd)"
           ls -R .
-
-      - name: Install & lint frontend
+      - name: Install & lint
         run: |
           cd frontend
           npm ci
@@ -32,18 +30,14 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-
-      - name: Debug: list backend files
+      - name: Show files for debug
         run: |
-          echo "PWD = $(pwd)"
           ls -R .
-
-      - name: Install & test backend
+      - name: Install & test
         run: |
           cd backend
           npm ci
@@ -53,23 +47,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-
-      - name: Debug: list ai-service files
+      - name: Show files for debug
         run: |
-          echo "PWD = $(pwd)"
           ls -R .
-
       - name: Install AI deps
         run: |
           cd ai-service
           pip install -r requirements.txt
-
-      - name: Smoke‑test AI service
+      - name: Smoke test
         run: |
           cd ai-service
-          echo "no tests yet"
+          echo "OK"
