@@ -2,11 +2,9 @@ name: CI
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   pull_request:
-    branches:
-      - main
+    branches: [ main ]
 
 jobs:
   frontend:
@@ -14,11 +12,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      # Install Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
+
+      - name: Debug: list frontend files
+        run: |
+          echo "PWD = $(pwd)"
+          ls -R .
 
       - name: Install & lint frontend
         run: |
@@ -31,11 +33,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      # Install Node.js
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
+
+      - name: Debug: list backend files
+        run: |
+          echo "PWD = $(pwd)"
+          ls -R .
 
       - name: Install & test backend
         run: |
@@ -48,11 +54,15 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      # Install Python
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
+
+      - name: Debug: list ai-service files
+        run: |
+          echo "PWD = $(pwd)"
+          ls -R .
 
       - name: Install AI deps
         run: |
