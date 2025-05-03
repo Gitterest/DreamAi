@@ -11,27 +11,23 @@ on:
 jobs:
   frontend:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: frontend
     steps:
       - uses: actions/checkout@v3
-      - name: Install frontend deps
-        run: npm ci
-      - name: Lint frontend
-        run: npm run lint
+      - name: Install frontend deps & lint
+        run: |
+          cd frontend
+          npm ci
+          npm run lint
 
   backend:
     runs-on: ubuntu-latest
-    defaults:
-      run:
-        working-directory: backend
     steps:
       - uses: actions/checkout@v3
-      - name: Install backend deps
-        run: npm ci
-      - name: Run backend tests
-        run: npm test
+      - name: Install backend deps & test
+        run: |
+          cd backend
+          npm ci
+          npm test
 
   ai-service:
     runs-on: ubuntu-latest
@@ -42,6 +38,10 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install AI deps
-        run: pip install -r ai-service/requirements.txt
-      - name: Dummy test
-        run: echo "no tests yet"
+        run: |
+          cd ai-service
+          pip install -r requirements.txt
+      - name: Smoke‑test AI service
+        run: |
+          cd ai-service
+          echo "no tests yet"
