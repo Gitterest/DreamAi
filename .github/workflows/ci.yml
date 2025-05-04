@@ -1,5 +1,4 @@
 name: CI
-
 on:
   push:
     branches:
@@ -17,7 +16,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - name: Show files for debug
+      - name: Show files
         run: |
           ls -R .
       - name: Install & lint
@@ -34,7 +33,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - name: Show files for debug
+      - name: Show files
         run: |
           ls -R .
       - name: Install & test
@@ -51,7 +50,7 @@ jobs:
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-      - name: Show files for debug
+      - name: Show files
         run: |
           ls -R .
       - name: Install AI deps
@@ -61,4 +60,4 @@ jobs:
       - name: Smoke test
         run: |
           cd ai-service
-          echo "OK"
+          echo OK
