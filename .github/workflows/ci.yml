@@ -1,4 +1,5 @@
 name: CI
+
 on:
   push:
     branches:
@@ -12,52 +13,65 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - name: Show files
+
+      - name: Show workspace files
         run: |
+          echo "PWD=$(pwd)"
           ls -R .
-      - name: Install & lint
+
+      - name: Install & lint frontend
         run: |
           cd frontend
-          npm ci
+          npm install
           npm run lint
 
   backend:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
           node-version: '18'
-      - name: Show files
+
+      - name: Show workspace files
         run: |
+          echo "PWD=$(pwd)"
           ls -R .
-      - name: Install & test
+
+      - name: Install & test backend
         run: |
           cd backend
-          npm ci
+          npm install
           npm test
 
   ai-service:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
+
       - name: Setup Python
         uses: actions/setup-python@v4
         with:
           python-version: '3.11'
-      - name: Show files
+
+      - name: Show workspace files
         run: |
+          echo "PWD=$(pwd)"
           ls -R .
-      - name: Install AI deps
+
+      - name: Install AI dependencies
         run: |
-          cd ai-service
-          pip install -r requirements.txt
-      - name: Smoke test
+          pip install --upgrade pip
+          pip install -r ai-service/requirements.txt
+
+      - name: Smoke‑test AI modules
         run: |
-          cd ai-service
-          echo OK
+          python -c "import nlp_model; print('nlp_model import OK')"
+          python -c "import rl_scheduler; print('rl_scheduler import OK')"
