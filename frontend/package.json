@@ -1,8 +1,9 @@
 {
-  "name": "DreamWeaverLogs",
+  "name": "DreamAiApp",
   "version": "1.0.0",
   "private": true,
   "scripts": {
+    "lint": "eslint . --ext .js,.jsx",
     "start": "react-native start",
     "android": "react-native run-android",
     "ios": "react-native run-ios"
@@ -26,5 +27,32 @@
     "eslint": "^9.26.0",
     "eslint-plugin-react": "^7.37.5",
     "globals": "^16.0.0"
+  },
+  "eslintConfig": {
+    "root": true,
+    "extends": [
+      "eslint:recommended",
+      "plugin:react/recommended"
+    ],
+    "parserOptions": {
+      "ecmaVersion": 2021,
+      "sourceType": "module",
+      "ecmaFeatures": {
+        "jsx": true
+      }
+    },
+    "env": {
+      "browser": true,
+      "node": true,
+      "es6": true
+    },
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    },
+    "rules": {
+      "react/prop-types": "off"
+    }
   }
 }
