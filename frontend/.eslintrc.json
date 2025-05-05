@@ -1,0 +1,18 @@
+{
+  "env": {
+    "es6": true,
+    "node": true,
+    "react-native/react-native": true
+  },
+  "extends": ["eslint:recommended", "plugin:react-native/all"],
+  "plugins": ["react", "react-native"],
+  "parserOptions": {
+    "ecmaFeatures": { "jsx": true },
+    "ecmaVersion": 2021,
+    "sourceType": "module"
+  },
+  "rules": {
+    "no-console": "warn",
+    "react-native/no-inline-styles": "warn"
+  }
+}
