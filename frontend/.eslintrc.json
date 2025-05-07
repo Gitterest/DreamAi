@@ -19,9 +19,7 @@
     "react": { "version": "detect" }
   },
   "rules": {
-    // disable prop‑types checking if you don't want to add PropTypes
     "react/prop-types": "off",
-    // error on unused vars (but allow unused function args)
     "no-unused-vars": ["error", { "args": "none", "ignoreRestSiblings": true }]
   }
 }
